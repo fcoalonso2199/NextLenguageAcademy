@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Language Academy | Learn Spanish</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CONFIGURACIÓN GENERAL Y VARIABLES DE COLOR (Extraídas del logo) --- */
+        :root {
+            --primary-dark: #112233;     /* Azul oscuro del logo */
+            --accent-teal: #1ea385;     /* Verde turquesa de "Language" */
+            --accent-orange: #fca626;   /* Naranja vibrante del isotipo */
+            --text-muted: #556677;      /* Gris suave para textos extensos */
+            --bg-light: #f8fafc;        /* Fondo claro limpio */
+            --font-main: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--primary-dark);
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- BOTONES Y COMPONENTES REUTILIZABLES --- */
+        .btn-primary {
+            background-color: var(--accent-teal);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(30, 163, 133, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #17856c;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--accent-teal);
+            color: var(--accent-teal);
+            padding: 8px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent-teal);
+            color: white;
+        }
+
+        .btn-link {
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        .btn-link:hover {
+            color: var(--accent-teal);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-orange);
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background-color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 55px;
+            width: auto;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin-left: 25px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-teal);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #ffffff 0%, var(--bg-light) 100%);
+            overflow: hidden;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+        }
+
+        .hero-content .highlight {
+            color: var(--accent-teal);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            max-width: 540px;
+        }
+
+        .hero-image-placeholder {
+            flex: 1;
+            height: 400px;
+            background-color: #e2e8f0;
+            border-radius: 16px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .image-bg-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--accent-orange);
+            top: 15px;
+            left: 15px;
+            border-radius: 16px;
+            z-index: -1;
+        }
+
+        .placeholder-text {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* --- BENEFITS SECTION --- */
+        .about-section {
+            padding: 100px 0;
+        }
+
+        .grid-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #edf2f7;
+            transition: transform 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .benefit-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- CONTACT / FORM SECTION --- */
+        .contact-section {
+            padding: 100px 0;
+            background-color: var(--primary-dark);
+            color: white;
+        }
+
+        .contact-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .contact-info p {
+            color: #cbd5e1;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        .stats-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: rgba(252, 166, 38, 0.2);
+            border: 1px solid var(--accent-orange);
+            color: var(--accent-orange);
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .contact-form-wrapper {
+            flex: 1;
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 14px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-teal);
+            box-shadow: 0 0 0 3px rgba(30, 163, 133, 0.15);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--accent-orange);
+            color: var(--primary-dark);
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #e5921a;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background-color: #0b1520;
+            color: #64748b;
+            padding: 30px 0;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        /* --- RESPONSIVIDAD BÁSICA (MÓVILES) --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero-container, .contact-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-content h1 {
+                font-size: 2.3rem;
+            }
+            .hero-image-placeholder {
+                width: 100%;
+                height: 280px;
+            }
+            .btn-link {
+                display: block;
+                margin-left: 0;
+                margin-top: 15px;
+            }
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <img src="logo.jpg" alt="Next Language Academy Logo" class="logo">
+            <nav class="nav-menu">
+                <a href="#about">About Us</a>
+                <a href="#courses">Our Method</a>
+                <a href="#contact" class="btn-secondary">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Master Spanish, <br><span class="highlight">Unlock Your Next Level</span></h1>
+                <p>Personalized, immersive online Spanish lessons designed to help you speak confidently from day one. Whether for career, travel, or personal growth.</p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn-primary">Book a Free Trial Lesson</a>
+                    <a href="#courses" class="btn-link">Learn More &rarr;</a>
+                </div>
+            </div>
+            <div class="logo.jpg">
+                <div class="image-bg-effect"></div>
+                <span class="logo.jpg"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Next Language Academy?</h2>
+            <div class="grid-benefits">
+                <div class="benefit-card">
+                    <div class="benefit-icon" style="background-color: #fca626;"></div>
+                    <h3>100% Native Tutors</h3>
+                    <p>Learn authentic pronunciation, cultural nuances, and real-life expressions from professional native speakers.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon" style="background-color: #1ea385;"></div>
+                    <h3>Tailored Curriculum</h3>
+                    <p>No generic software tracks. We build a custom learning path based on your current level and specific personal goals.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon" style="background-color: #112233;"></div>
+                    <h3>Flexible Scheduling</h3>
+                    <p>Life gets busy. Book and manage your intensive or casual language sessions at times that perfectly fit your routine.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container contact-container">
+            <div class="contact-info">
+                <h2>Ready to speak fluent Spanish?</h2>
+                <p>Join our academy and change the way you connect with the world. Leave your details and one of our founders will reach out to schedule your placement interview.</p>
+                <div class="stats-badge">
+                    <strong>100%</strong> Satisfaction Rate
+                </div>
+            </div>
+            <div class="contact-form-wrapper">
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for your interest! We will contact you very soon.');">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Lucke Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="lucke@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="level">Current Spanish Level</label>
+                        <select id="level">
+                            <option value="beginner">Beginner (A1 - A2)</option>
+                            <option value="intermediate">Intermediate (B1 - B2)</option>
+                            <option value="advanced">Advanced (C1)</option>
+                            <option value="not-sure">I am not sure</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit">Get Started Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 Next Language Academy. All rights reserved.</p>
+            <p>Designed with passion for language education.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
