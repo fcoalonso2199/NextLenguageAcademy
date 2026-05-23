@@ -26,6 +26,12 @@
         body { font-family: var(--font-main); color: var(--primary-dark); background-color: var(--bg-light); line-height: 1.6; overflow-x: hidden; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
         
+        /* SCROLLBAR PREMIUM */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: var(--accent-teal); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #17856c; }
+
         .btn-secondary { border: 2px solid var(--accent-teal); color: var(--accent-teal); padding: 8px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
         .btn-secondary:hover { background-color: var(--accent-teal); color: white; }
 
@@ -52,7 +58,7 @@
         .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: var(--font-main); font-size: 1rem; color: var(--primary-dark); }
         .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--accent-teal); box-shadow: 0 0 0 3px rgba(30, 163, 133, 0.15); }
         
-        /* ESTILOS DEL BOTÓN CON SPINNER */
+        /* BOTÓN CON ANIMACIÓN DE CARGA */
         .btn-submit { 
             width: 100%; 
             background-color: var(--accent-orange); 
@@ -71,14 +77,17 @@
         .btn-submit:hover { background-color: #e5921a; }
         .btn-submit:disabled { background-color: #e5921a !important; }
 
-        /* FOOTER */
-        .footer { background-color: #0b1520; color: #64748b; padding: 40px 0; font-size: 0.9rem; }
-        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
-        .social-links a { color: #64748b; font-size: 1.5rem; text-decoration: none; }
+        /* FOOTER PREMIUM */
+        .footer { background-color: #0b1520; color: #64748b; padding: 50px 0 30px 0; font-size: 0.85rem; letter-spacing: 0.5px; }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; border-bottom: 1px solid rgba(100, 116, 139, 0.15); padding-bottom: 30px; }
+        .instagram-link { color: #8a99ad; text-decoration: none; font-weight: 500; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s ease; }
+        .instagram-link i { font-size: 1rem; opacity: 0.8; }
+        .instagram-link:hover { color: var(--accent-orange); }
+        .footer-credits { text-align: center; padding-top: 25px; color: #475569; font-size: 0.75rem; }
+        .developer-link { color: #64748b; text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
+        .developer-link:hover { color: var(--accent-teal); }
 
-        @media (max-width: 992px) {
-            .contact-grid { flex-direction: column; text-align: center; gap: 40px; }
-        }
+        @media (max-width: 992px) { .contact-grid { flex-direction: column; text-align: center; gap: 40px; } }
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             .nav-menu { position: absolute; top: 85px; left: -100%; width: 100%; background-color: white; flex-direction: column; padding: 30px 0; box-shadow: 0 10px 15px rgba(0,0,0,0.05); transition: left 0.4s ease; }
@@ -111,7 +120,7 @@
             </div>
             
             <div class="contact-form-wrapper" data-aos="fade-left">
-                <form class="contact-form" action="https://formsubmit.co/tu-correo@email.com" method="POST">
+                <form class="contact-form" action="https://formsubmit.co/spanish.on@outlook.com" method="POST">
                     <input type="hidden" name="_subject" value="¡Nuevo registro en Next Language Academy!">
                     <input type="hidden" name="_captcha" value="false">
 
@@ -143,9 +152,16 @@
     </main>
 
     <footer class="footer">
-        <div class="container footer-content">
-            <p>&copy; 2026 Next Language Academy. All rights reserved.</p>
-            <div class="social-links"><a href="https://instagram.com/tu_perfil" target="_blank"><i class="fab fa-instagram"></i> @NextLanguage</a></div>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Next Language Academy. All rights reserved.</p>
+                <a href="https://www.instagram.com/spanish.on10/" target="_blank" class="instagram-link">
+                    <i class="fab fa-instagram"></i> NextLanguage
+                </a>
+            </div>
+            <div class="footer-credits">
+                <p>Developed by <a href="https://fcoalonso2199.github.io/PersonalPageWeb/" target="_blank" class="developer-link">Francisco Javier Alonso</a></p>
+            </div>
         </div>
     </footer>
 
@@ -158,7 +174,6 @@
             mobileMenu.querySelector('i').classList.toggle('fa-times');
         });
 
-        // Lógica de microanimación del botón al enviar formulario
         const form = document.querySelector('.contact-form');
         const submitBtn = document.getElementById('submit-btn');
         const btnText = submitBtn.querySelector('.btn-text');

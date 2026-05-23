@@ -25,6 +25,13 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: var(--font-main); color: var(--primary-dark); background-color: var(--bg-light); line-height: 1.6; overflow-x: hidden; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        
+        /* SCROLLBAR PREMIUM */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: var(--accent-teal); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #17856c; }
+
         .btn-secondary { border: 2px solid var(--accent-teal); color: var(--accent-teal); padding: 8px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
         .btn-secondary:hover { background-color: var(--accent-teal); color: white; }
 
@@ -50,10 +57,23 @@
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; padding: 0 20px; color: var(--text-muted); font-size: 0.95rem; }
         .faq-item.active .faq-answer { padding: 0 20px 20px 20px; }
 
-        /* FOOTER */
-        .footer { background-color: #0b1520; color: #64748b; padding: 40px 0; font-size: 0.9rem; }
-        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
-        .social-links a { color: #64748b; font-size: 1.5rem; text-decoration: none; }
+        /* FOOTER PREMIUM */
+        .footer { background-color: #0b1520; color: #64748b; padding: 50px 0 30px 0; font-size: 0.85rem; letter-spacing: 0.5px; }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; border-bottom: 1px solid rgba(100, 116, 139, 0.15); padding-bottom: 30px; }
+        .instagram-link { color: #8a99ad; text-decoration: none; font-weight: 500; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s ease; }
+        .instagram-link i { font-size: 1rem; opacity: 0.8; }
+        .instagram-link:hover { color: var(--accent-orange); }
+        .footer-credits { text-align: center; padding-top: 25px; color: #475569; font-size: 0.75rem; }
+        .developer-link { color: #64748b; text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
+        .developer-link:hover { color: var(--accent-teal); }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-menu { position: absolute; top: 85px; left: -100%; width: 100%; background-color: white; flex-direction: column; padding: 30px 0; box-shadow: 0 10px 15px rgba(0,0,0,0.05); transition: left 0.4s ease; }
+            .nav-menu.active { left: 0; }
+            .nav-menu a { margin: 15px 0; font-size: 1.1rem; }
+            .footer-content { flex-direction: column; text-align: center; }
+        }
     </style>
 </head>
 <body>
@@ -79,17 +99,14 @@
                 <div class="faq-question">How do the online classes work?</div>
                 <div class="faq-answer"><p>Our classes are 100% live via Zoom or Google Meet. You will practice conversational skills in real-time with an expert native tutor tailored entirely to your schedule and goals.</p></div>
             </div>
-            
             <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
                 <div class="faq-question">What materials do I need for the lessons?</div>
                 <div class="faq-answer"><p>Just a reliable internet connection, a computer or tablet with a webcam, and a microphone. All learning materials, worksheets, and digital resources are provided by us for free.</p></div>
             </div>
-            
             <div class="faq-item" data-aos="fade-up" data-aos-delay="250">
                 <div class="faq-question">Can I reschedule a class if I get busy?</div>
                 <div class="faq-answer"><p>Yes, absolutely! We know life happens. You can reschedule any class with up to 24 hours' notice through our system at no extra cost.</p></div>
             </div>
-            
             <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
                 <div class="faq-question">Is the trial lesson completely free?</div>
                 <div class="faq-answer"><p>Yes, 100% free with no commitment required. It's a 25-minute introductory session to evaluate your current level, understand your goals, and let you experience our interactive method.</p></div>
@@ -98,9 +115,16 @@
     </main>
 
     <footer class="footer">
-        <div class="container footer-content">
-            <p>&copy; 2026 Next Language Academy. All rights reserved.</p>
-            <div class="social-links"><a href="https://instagram.com/tu_perfil" target="_blank"><i class="fab fa-instagram"></i> @NextLanguage</a></div>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Next Language Academy. All rights reserved.</p>
+                <a href="https://www.instagram.com/spanish.on10/" target="_blank" class="instagram-link">
+                    <i class="fab fa-instagram"></i> NextLanguage
+                </a>
+            </div>
+            <div class="footer-credits">
+                <p>Developed by <a href="https://fcoalonso2199.github.io/PersonalPageWeb/" target="_blank" class="developer-link">Francisco Javier Alonso</a></p>
+            </div>
         </div>
     </footer>
 
@@ -113,7 +137,6 @@
             mobileMenu.querySelector('i').classList.toggle('fa-times');
         });
 
-        // Lógica del acordeón
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const item = question.parentElement;
