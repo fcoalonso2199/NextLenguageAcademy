@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Next Language Academy</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        :root {
+            --primary-dark: #112233;
+            --accent-teal: #1ea385;
+            --accent-orange: #fca626;
+            --text-muted: #556677;
+            --bg-light: #f8fafc;
+            --font-main: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-main); color: var(--primary-dark); background-color: var(--bg-light); line-height: 1.6; overflow-x: hidden; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        
+        .btn-secondary { border: 2px solid var(--accent-teal); color: var(--accent-teal); padding: 8px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+        .btn-secondary:hover { background-color: var(--accent-teal); color: white; }
+
+        /* NAVBAR */
+        .navbar { background-color: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { height: 55px; width: auto; cursor: pointer; }
+        .nav-menu { display: flex; align-items: center; }
+        .nav-menu a { text-decoration: none; color: var(--primary-dark); font-weight: 600; margin-left: 25px; font-size: 0.95rem; }
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary-dark); }
+
+        /* CONTACT LAYOUT */
+        .contact-page { padding: 60px 0 100px 0; }
+        .contact-grid { display: flex; align-items: center; gap: 60px; max-width: 1000px; margin: 0 auto; }
+        .contact-info { flex: 1; }
+        .contact-info h1 { font-size: 2.8rem; margin-bottom: 20px; line-height: 1.2; }
+        .contact-info p { color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem; }
+        .stats-badge { display: inline-block; padding: 8px 16px; background-color: rgba(252, 166, 38, 0.15); border: 1px solid var(--accent-orange); color: #d48310; border-radius: 20px; font-size: 0.9rem; font-weight: 600; }
+        
+        .contact-form-wrapper { flex: 1; width: 100%; }
+        .contact-form { background-color: white; padding: 40px; border-radius: 14px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); border: 1px solid #edf2f7; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; color: var(--primary-dark); font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: var(--font-main); font-size: 1rem; color: var(--primary-dark); }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--accent-teal); box-shadow: 0 0 0 3px rgba(30, 163, 133, 0.15); }
+        
+        /* ESTILOS DEL BOTÓN CON SPINNER */
+        .btn-submit { 
+            width: 100%; 
+            background-color: var(--accent-orange); 
+            color: var(--primary-dark); 
+            border: none; 
+            padding: 14px; 
+            border-radius: 6px; 
+            font-size: 1rem; 
+            font-weight: 700; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn-submit:hover { background-color: #e5921a; }
+        .btn-submit:disabled { background-color: #e5921a !important; }
+
+        /* FOOTER */
+        .footer { background-color: #0b1520; color: #64748b; padding: 40px 0; font-size: 0.9rem; }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .social-links a { color: #64748b; font-size: 1.5rem; text-decoration: none; }
+
+        @media (max-width: 992px) {
+            .contact-grid { flex-direction: column; text-align: center; gap: 40px; }
+        }
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-menu { position: absolute; top: 85px; left: -100%; width: 100%; background-color: white; flex-direction: column; padding: 30px 0; box-shadow: 0 10px 15px rgba(0,0,0,0.05); transition: left 0.4s ease; }
+            .nav-menu.active { left: 0; }
+            .nav-menu a { margin: 15px 0; font-size: 1.1rem; }
+            .footer-content { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <img src="logo.jpg" alt="Next Language Academy Logo" class="logo" onclick="window.location.href='index.html'">
+            <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="why-us.html">Why Us</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contact.html" style="color: var(--accent-teal);">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contact-page">
+        <div class="container contact-grid">
+            <div class="contact-info" data-aos="fade-right">
+                <h1>Ready to speak fluent Spanish?</h1>
+                <p>Leave your contact details and an academic adviser will reach out within 24 hours to schedule your proficiency evaluation session.</p>
+                <div class="stats-badge"><i class="fas fa-check-circle"></i> 100% Satisfaction Rate Guaranteed</div>
+            </div>
+            
+            <div class="contact-form-wrapper" data-aos="fade-left">
+                <form class="contact-form" action="https://formsubmit.co/tu-correo@email.com" method="POST">
+                    <input type="hidden" name="_subject" value="¡Nuevo registro en Next Language Academy!">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" name="Name" id="name" placeholder="Luke Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" name="Email" id="email" placeholder="luke@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="level">Current Spanish Level</label>
+                        <select name="Spanish Level" id="level">
+                            <option value="Beginner">Beginner (A1 - A2)</option>
+                            <option value="Intermediate">Intermediate (B1 - B2)</option>
+                            <option value="Advanced">Advanced (C1)</option>
+                            <option value="Not Sure">I am not sure</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit" id="submit-btn">
+                        <span class="btn-text">Get Started Now</span>
+                        <span class="btn-spinner" style="display: none; margin-left: 10px;"><i class="fas fa-spinner fa-spin"></i></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 Next Language Academy. All rights reserved.</p>
+            <div class="social-links"><a href="https://instagram.com/tu_perfil" target="_blank"><i class="fab fa-instagram"></i> @NextLanguage</a></div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenu.querySelector('i').classList.toggle('fa-bars');
+            mobileMenu.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Lógica de microanimación del botón al enviar formulario
+        const form = document.querySelector('.contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const btnSpinner = submitBtn.querySelector('.btn-spinner');
+
+        form.addEventListener('submit', function() {
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.8';
+            submitBtn.style.cursor = 'not-allowed';
+            
+            btnText.textContent = "Processing Application...";
+            btnSpinner.style.display = "inline-block";
+        });
+    </script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 100 });
+    </script>
+</body>
+</html>
